@@ -1,11 +1,20 @@
 import React from 'react';
-import { View } from 'react-native';
-import { Container, Title } from './styles';
+import { Container, Header, TotalCars, HeaderContent } from './styles';
+import Logo from '@assets/images/logo.svg';
+import { RFValue } from 'react-native-responsive-fontsize';
 
 const Home = () => {
   return (
     <Container>
-      <Title>Home</Title>
+      <Header>
+        <HeaderContent>
+          <Logo
+            width={RFValue(108)}
+            height={RFValue(12)}
+          />
+          <TotalCars>Total de 12 Carros</TotalCars>
+        </HeaderContent>
+      </Header>
     </Container>
   );
 };

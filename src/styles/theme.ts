@@ -1,4 +1,4 @@
-export default {
+const theme = {
   colors: {
     header: '#1b1b1f',
     background_primary: '#f4f5f6',
@@ -21,3 +21,6 @@ export default {
     secondary_600: 'Archivo_600SemiBold',
   },
 };
+
+export default theme;
+export type ThemeType = typeof theme;

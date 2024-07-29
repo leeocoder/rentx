@@ -60,7 +60,11 @@ export default function App() {
         onLayout={onLayoutRootView}
       >
         <Home />
-        <StatusBar style='auto' />
+        <StatusBar
+          style='auto'
+          translucent
+          backgroundColor='transparent'
+        />
       </View>
     </ThemeProvider>
   );
