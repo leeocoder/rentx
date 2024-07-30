@@ -13,7 +13,8 @@ import {
 } from './styles';
 import Gasoline from '@assets/images/gasoline.svg';
 
-type CardCardProps = {
+export type CardCardProps = {
+  id: string;
   brand: string;
   name: string;
   rent: {
@@ -24,7 +25,7 @@ type CardCardProps = {
   image: string;
 };
 
-export type CarCardDataProps = {
+type CarCardDataProps = {
   data: CardCardProps;
 };
 

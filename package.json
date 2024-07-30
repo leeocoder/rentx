@@ -19,7 +19,8 @@
     "react-native": "0.74.3",
     "react-native-responsive-fontsize": "^0.5.1",
     "react-native-svg": "15.2.0",
-    "styled-components": "^6.1.12"
+    "styled-components": "^6.1.12",
+    "react-native-gesture-handler": "~2.16.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

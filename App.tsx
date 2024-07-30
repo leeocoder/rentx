@@ -15,6 +15,8 @@ import {
   Archivo_600SemiBold,
 } from '@expo-google-fonts/archivo';
 import theme from './src/styles/theme';
+import CarDetails from '@screens/CarDetails';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -54,18 +56,21 @@ export default function App() {
   }
 
   return (
-    <ThemeProvider theme={theme}>
-      <View
-        style={{ flex: 1 }}
-        onLayout={onLayoutRootView}
-      >
-        <Home />
-        <StatusBar
-          style='auto'
-          translucent
-          backgroundColor='transparent'
-        />
-      </View>
-    </ThemeProvider>
+    <GestureHandlerRootView>
+      <ThemeProvider theme={theme}>
+        <View
+          style={{ flex: 1 }}
+          onLayout={onLayoutRootView}
+        >
+          {/* <Home /> */}
+          <CarDetails />
+          <StatusBar
+            style='auto'
+            translucent
+            backgroundColor='transparent'
+          />
+        </View>
+      </ThemeProvider>
+    </GestureHandlerRootView>
   );
 }
