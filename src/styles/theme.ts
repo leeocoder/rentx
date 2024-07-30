@@ -13,7 +13,7 @@ const theme = {
     shape: '#e1e1e8',
     shape_dark: '#29292e',
   },
-  font: {
+  fonts: {
     primary_400: 'Inter_400Regular',
     primary_500: 'Inter_500Medium',
     secondary_400: 'Archivo_400Regular',
