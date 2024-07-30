@@ -1,16 +1,14 @@
 import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 import { ThemeType } from '../../styles/theme';
+import { BorderlessButton } from 'react-native-gesture-handler';
 
-export const Container = styled.View`
-  width: 100%;
-  height: 126px;
+export const Container = styled(BorderlessButton)`
   background-color: ${({ theme }: { theme: ThemeType }) =>
     theme.colors.background_secondary};
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 24px;
 `;
 export const Details = styled.View``;
 

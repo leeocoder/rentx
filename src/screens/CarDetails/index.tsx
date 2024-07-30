@@ -1,11 +1,14 @@
 import BackButton from '@components/BackButton';
 import { Container, Header } from './styles';
+import ImageSlider from '@components/ImageSlider';
 
 const CarDetails = () => {
   return (
     <Container>
       <Header>
-        <BackButton onPress={() => {}} />
+        <ImageSlider images={[require('@assets/images/audi.png')]}>
+          <BackButton onPress={() => {}} />
+        </ImageSlider>
       </Header>
     </Container>
   );
