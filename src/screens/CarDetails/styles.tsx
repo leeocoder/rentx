@@ -79,3 +79,10 @@ export const Accessories = styled.View`
   gap: 8px;
   margin-top: 16px;
 `;
+
+export const Footer = styled.View`
+  width: 100%;
+  background-color: ${({ theme }: { theme: ThemeType }) =>
+    theme.colors.background_primary};
+  padding: 24px;
+`;

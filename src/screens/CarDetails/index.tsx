@@ -12,10 +12,12 @@ import {
   Price,
   Period,
   Rent,
+  Footer,
 } from './styles';
 import ImageSlider from '@components/ImageSlider';
 import Accessory from '@components/Accessory';
 import Speed from '@assets/images/speed.svg';
+import Button from '@components/Button';
 
 const CarDetails = () => {
   return (
@@ -73,6 +75,9 @@ const CarDetails = () => {
           para quem gosta de acelerar.
         </About>
       </Content>
+      <Footer>
+        <Button title='Escolher período do aluguel' />
+      </Footer>
     </Container>
   );
 };
