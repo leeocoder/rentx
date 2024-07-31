@@ -67,6 +67,15 @@ export const About = styled.Text`
   color: ${({ theme }: { theme: ThemeType }) => theme.colors.text_details};
   width: 100%;
   margin-top: 24px;
+  line-height: ${RFValue(25)}px;
 `;
 
 export const Rent = styled.View``;
+
+export const Accessories = styled.View`
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+`;

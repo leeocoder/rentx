@@ -3,6 +3,7 @@ import {
   Container,
   About,
   Header,
+  Accessories,
   Content,
   Details,
   Description,
@@ -13,6 +14,8 @@ import {
   Rent,
 } from './styles';
 import ImageSlider from '@components/ImageSlider';
+import Accessory from '@components/Accessory';
+import Speed from '@assets/images/speed.svg';
 
 const CarDetails = () => {
   return (
@@ -33,6 +36,37 @@ const CarDetails = () => {
             <Price>R$ 580</Price>
           </Rent>
         </Details>
+        <Accessories>
+          <Accessory
+            name='380km/h'
+            icon={Speed}
+          />
+
+          <Accessory
+            name='380km/h'
+            icon={Speed}
+          />
+
+          <Accessory
+            name='380km/h'
+            icon={Speed}
+          />
+
+          <Accessory
+            name='380km/h'
+            icon={Speed}
+          />
+
+          <Accessory
+            name='380km/h'
+            icon={Speed}
+          />
+
+          <Accessory
+            name='380km/h'
+            icon={Speed}
+          />
+        </Accessories>
         <About>
           Este é automóvel desportivo. Surgiu do lendário touro de lide
           indultado na praça Real Maestranza de Sevilla. É um belíssimo carro
