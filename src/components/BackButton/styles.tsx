@@ -4,11 +4,11 @@ import { ThemeType } from '../../styles/theme';
 import { BorderlessButton } from 'react-native-gesture-handler';
 
 export const Container = styled(BorderlessButton)`
-  background-color: ${({ theme }: { theme: ThemeType }) =>
-    theme.colors.background_secondary};
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  width: 32px;
+  height: 32px;
 `;
 export const Details = styled.View``;
 

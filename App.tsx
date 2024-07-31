@@ -17,6 +17,7 @@ import {
 import theme from './src/styles/theme';
 import CarDetails from '@screens/CarDetails';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import Schedule from '@screens/Schedule';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -63,7 +64,8 @@ export default function App() {
           onLayout={onLayoutRootView}
         >
           {/* <Home /> */}
-          <CarDetails />
+          {/* <CarDetails /> */}
+          <Schedule />
           <StatusBar
             style='auto'
             translucent
