@@ -19,6 +19,7 @@ import CarDetails from '@screens/CarDetails';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import Schedule from '@screens/Schedule';
 import ScheduleDetails from '@screens/ScheduleDetails';
+import ScheduleComplete from '@screens/ScheduleComplete';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -67,7 +68,8 @@ export default function App() {
           {/* <Home /> */}
           {/* <CarDetails /> */}
           {/* <Schedule /> */}
-          <ScheduleDetails />
+          {/* <ScheduleDetails /> */}
+          <ScheduleComplete />
           <StatusBar
             style='auto'
             translucent
