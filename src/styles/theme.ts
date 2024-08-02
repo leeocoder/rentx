@@ -6,7 +6,7 @@ const theme = {
     text: '#7a7a80',
     text_details: '#aeaeb3',
     title: '#47474d',
-    line: '#ebebef0',
+    line: '#7a7a80',
     main: '#dc1637',
     main_light: '#fbedef',
     success: '#03b252',
