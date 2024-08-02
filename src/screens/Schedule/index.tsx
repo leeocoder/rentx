@@ -5,12 +5,16 @@ import {
   Title,
   RentalPeriod,
   DateInfo,
+  Content,
+  Footer,
   DateTitle,
   DateValue,
 } from './styles';
 import { useTheme } from 'styled-components';
 
 import Arrow from '@assets/images/arrow-left.svg';
+import Button from '@components/Button';
+import Calendar from '@components/Calendar';
 
 const Schedule = () => {
   const { colors } = useTheme();
@@ -30,15 +34,22 @@ const Schedule = () => {
         <RentalPeriod>
           <DateInfo>
             <DateTitle>DE</DateTitle>
-            <DateValue />
+            <DateValue selected={false}></DateValue>
           </DateInfo>
           <Arrow />
           <DateInfo>
             <DateTitle>ATÉ</DateTitle>
-            <DateValue />
+            <DateValue selected={false}></DateValue>
           </DateInfo>
         </RentalPeriod>
       </Header>
+
+      <Content>
+        <Calendar />
+      </Content>
+      <Footer>
+        <Button title='Confirmar' />
+      </Footer>
     </Container>
   );
 };

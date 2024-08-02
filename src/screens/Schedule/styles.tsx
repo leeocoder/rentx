@@ -1,4 +1,4 @@
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 
 import { ThemeType } from '../../styles/theme';
 import { RFValue } from 'react-native-responsive-fontsize';
@@ -32,6 +32,7 @@ export const RentalPeriod = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  margin: 32px 0;
 `;
 
 export const DateInfo = styled.View`
@@ -49,4 +50,21 @@ export const DateValue = styled.Text<DateValueProps>`
   color: ${({ theme }: { theme: ThemeType }) => theme.colors.shape};
   font-family: ${({ theme }: { theme: ThemeType }) => theme.fonts.primary_500};
   font-size: ${RFValue(15)}px;
+  ${({ selected, theme }: { theme: ThemeType } & DateValueProps) =>
+    !selected &&
+    css`
+      border-bottom-width: 1px;
+      border-bottom-color: ${theme.colors.text};
+      padding-bottom: 5px;
+    `}
+`;
+
+export const Content = styled.ScrollView.attrs({
+  contentContainerStyle: {
+    paddingBottom: 24,
+  },
+  showsVerticalScrollIndicator: false,
+})``;
+export const Footer = styled.View`
+  padding: 24px;
 `;
