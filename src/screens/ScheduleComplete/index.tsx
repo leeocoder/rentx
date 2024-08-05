@@ -1,9 +1,9 @@
-import { useTheme } from 'styled-components';
 import BrandSVG from '@assets/images/brand.svg';
 import DoneSVG from '@assets/images/done.svg';
 
-import { Container, Content, Title, Message } from './styles';
+import { Container, Content, Title, Message, Footer } from './styles';
 import { useWindowDimensions } from 'react-native';
+import ConfirmButton from '@components/ConfirmButton';
 
 const ScheduleComplete = () => {
   const { width: FullWidth } = useWindowDimensions();
@@ -24,6 +24,9 @@ const ScheduleComplete = () => {
           pegar o seu automóvel
         </Message>
       </Content>
+      <Footer>
+        <ConfirmButton title='OK' />
+      </Footer>
     </Container>
   );
 };
