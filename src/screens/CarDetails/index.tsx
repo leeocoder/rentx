@@ -18,13 +18,18 @@ import ImageSlider from '@components/ImageSlider';
 import Accessory from '@components/Accessory';
 import Speed from '@assets/images/speed.svg';
 import Button from '@components/Button';
+import { useNavigation } from '@react-navigation/native';
+
+import { CarDetailsNavigationProp } from '../../routes/routes-types';
 
 const CarDetails = () => {
+  const navigation = useNavigation<CarDetailsNavigationProp>();
+
   return (
     <Container>
       <Header>
         <ImageSlider images={[require('@assets/images/audi.png')]}>
-          <BackButton onPress={() => {}} />
+          <BackButton onPress={() => navigation.goBack()} />
         </ImageSlider>
       </Header>
       <Content>
@@ -76,7 +81,10 @@ const CarDetails = () => {
         </About>
       </Content>
       <Footer>
-        <Button title='Escolher período do aluguel' />
+        <Button
+          title='Escolher período do aluguel'
+          onPress={() => navigation.navigate('Schedule')}
+        />
       </Footer>
     </Container>
   );

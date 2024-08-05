@@ -1,145 +1,26 @@
-import React from 'react';
-import { Container, Header, TotalCars, HeaderContent, CarList } from './styles';
 import Logo from '@assets/images/logo.svg';
-import { RFValue } from 'react-native-responsive-fontsize';
 import CarCard, { CardCardProps } from '@components/CarCard';
-import { FlatList } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { MOCK_CAR_DATA_LIST } from '@utils/car-data.mock';
 
-const fakeData: CardCardProps[] = [
-  {
-    id: '1',
-    brand: 'AUDI',
-    name: 'RS 5 Coupé',
-    rent: {
-      period: 'Ao dia',
-      price: 120,
-    },
-    type: 'Gasolina',
-    image: require('@assets/images/audi.png'),
-  },
+import { RFValue } from 'react-native-responsive-fontsize';
 
-  {
-    id: '1',
-    brand: 'AUDI',
-    name: 'RS 5 Coupé',
-    rent: {
-      period: 'Ao dia',
-      price: 120,
-    },
-    type: 'Gasolina',
-    image: require('@assets/images/audi.png'),
-  },
+import { RootStackParamList } from '../../routes/stack.routes';
+import { CarList, Container, Header, HeaderContent, TotalCars } from './styles';
 
-  {
-    id: '1',
-    brand: 'AUDI',
-    name: 'RS 5 Coupé',
-    rent: {
-      period: 'Ao dia',
-      price: 120,
-    },
-    type: 'Gasolina',
-    image: require('@assets/images/audi.png'),
-  },
-
-  {
-    id: '1',
-    brand: 'AUDI',
-    name: 'RS 5 Coupé',
-    rent: {
-      period: 'Ao dia',
-      price: 120,
-    },
-    type: 'Gasolina',
-    image: require('@assets/images/audi.png'),
-  },
-
-  {
-    id: '1',
-    brand: 'AUDI',
-    name: 'RS 5 Coupé',
-    rent: {
-      period: 'Ao dia',
-      price: 120,
-    },
-    type: 'Gasolina',
-    image: require('@assets/images/audi.png'),
-  },
-
-  {
-    id: '1',
-    brand: 'AUDI',
-    name: 'RS 5 Coupé',
-    rent: {
-      period: 'Ao dia',
-      price: 120,
-    },
-    type: 'Gasolina',
-    image: require('@assets/images/audi.png'),
-  },
-
-  {
-    id: '1',
-    brand: 'AUDI',
-    name: 'RS 5 Coupé',
-    rent: {
-      period: 'Ao dia',
-      price: 120,
-    },
-    type: 'Gasolina',
-    image: require('@assets/images/audi.png'),
-  },
-
-  {
-    id: '1',
-    brand: 'AUDI',
-    name: 'RS 5 Coupé',
-    rent: {
-      period: 'Ao dia',
-      price: 120,
-    },
-    type: 'Gasolina',
-    image: require('@assets/images/audi.png'),
-  },
-
-  {
-    id: '1',
-    brand: 'AUDI',
-    name: 'RS 5 Coupé',
-    rent: {
-      period: 'Ao dia',
-      price: 120,
-    },
-    type: 'Gasolina',
-    image: require('@assets/images/audi.png'),
-  },
-
-  {
-    id: '1',
-    brand: 'AUDI',
-    name: 'RS 5 Coupé',
-    rent: {
-      period: 'Ao dia',
-      price: 120,
-    },
-    type: 'Gasolina',
-    image: require('@assets/images/audi.png'),
-  },
-
-  {
-    id: '1',
-    brand: 'AUDI',
-    name: 'RS 5 Coupé',
-    rent: {
-      period: 'Ao dia',
-      price: 120,
-    },
-    type: 'Gasolina',
-    image: require('@assets/images/audi.png'),
-  },
-];
+type HomeScreenNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  'CarDetails'
+>;
 
 const Home = () => {
+  const navigation = useNavigation<HomeScreenNavigationProp>();
+
+  function handleCarDetails() {
+    navigation.navigate('CarDetails');
+  }
+
   return (
     <Container>
       <Header>
@@ -151,13 +32,14 @@ const Home = () => {
           <TotalCars>Total de 12 Carros</TotalCars>
         </HeaderContent>
       </Header>
-      {/* <CarCard data={fakeData.data} /> */}
-      {/* <CarCard data={fakeData.data} /> */}
       <CarList
-        data={fakeData}
+        data={MOCK_CAR_DATA_LIST}
         keyExtractor={({ id }: CardCardProps) => id}
         renderItem={({ item }: { index: number; item: CardCardProps }) => (
-          <CarCard data={item} />
+          <CarCard
+            data={item}
+            onPress={handleCarDetails}
+          />
         )}
       />
     </Container>

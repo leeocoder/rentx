@@ -1,25 +1,20 @@
-import Home from '@screens/Home';
-import { StatusBar } from 'expo-status-bar';
-import { ActivityIndicator, Text, View } from 'react-native';
-
-import { ThemeProvider } from 'styled-components';
-
-import { useFonts } from 'expo-font';
-import { useCallback, useEffect, useState } from 'react';
-import * as SplashScreen from 'expo-splash-screen';
-
-import { Inter_400Regular, Inter_500Medium } from '@expo-google-fonts/inter';
 import {
   Archivo_400Regular,
   Archivo_500Medium,
   Archivo_600SemiBold,
 } from '@expo-google-fonts/archivo';
-import theme from './src/styles/theme';
-import CarDetails from '@screens/CarDetails';
+import { Inter_400Regular, Inter_500Medium } from '@expo-google-fonts/inter';
+
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
+import { StatusBar } from 'expo-status-bar';
+import { useCallback, useEffect, useState } from 'react';
+import { ActivityIndicator, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import Schedule from '@screens/Schedule';
-import ScheduleDetails from '@screens/ScheduleDetails';
-import ScheduleComplete from '@screens/ScheduleComplete';
+import { ThemeProvider } from 'styled-components';
+
+import Routes from './src/routes';
+import theme from './src/styles/theme';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -65,11 +60,7 @@ export default function App() {
           style={{ flex: 1 }}
           onLayout={onLayoutRootView}
         >
-          {/* <Home /> */}
-          {/* <CarDetails /> */}
-          {/* <Schedule /> */}
-          {/* <ScheduleDetails /> */}
-          <ScheduleComplete />
+          <Routes />
           <StatusBar
             style='auto'
             translucent

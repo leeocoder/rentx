@@ -15,8 +15,11 @@ import { useTheme } from 'styled-components';
 import Arrow from '@assets/images/arrow-left.svg';
 import Button from '@components/Button';
 import Calendar from '@components/Calendar';
+import { ScheduleNavigationProp } from '../../routes/routes-types';
+import { useNavigation } from '@react-navigation/native';
 
 const Schedule = () => {
+  const navigation = useNavigation<ScheduleNavigationProp>();
   const { colors } = useTheme();
   return (
     <Container>
@@ -48,7 +51,10 @@ const Schedule = () => {
         <Calendar />
       </Content>
       <Footer>
-        <Button title='Confirmar' />
+        <Button
+          title='Confirmar'
+          onPress={() => navigation.navigate('ScheduleDetails')}
+        />
       </Footer>
     </Container>
   );

@@ -31,14 +31,17 @@ import Button from '@components/Button';
 import { Feather } from '@expo/vector-icons';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { useTheme } from 'styled-components';
+import { ScheduleDetailsNavigationProp } from '../../routes/routes-types';
+import { useNavigation } from '@react-navigation/native';
 
 const ScheduleDetails = () => {
+  const navigation = useNavigation<ScheduleDetailsNavigationProp>();
   const theme = useTheme();
   return (
     <Container>
       <Header>
         <ImageSlider images={[require('@assets/images/audi.png')]}>
-          <BackButton onPress={() => {}} />
+          <BackButton onPress={() => navigation.goBack()} />
         </ImageSlider>
       </Header>
       <Content>
@@ -119,6 +122,7 @@ const ScheduleDetails = () => {
         <Button
           title='Alugar agora'
           color={theme.colors.success}
+          onPress={() => navigation.navigate('ScheduleComplete')}
         />
       </Footer>
     </Container>
