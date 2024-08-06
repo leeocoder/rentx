@@ -7,9 +7,10 @@ import {
   CarImageWrapper,
   CarImage,
 } from './styles';
+import { CarPhotoInterface } from '../../interfaces/car-server.interface';
 
 type ImageSliderProps = {
-  images: string[];
+  images: CarPhotoInterface[];
   children: React.ReactNode;
 };
 
@@ -27,7 +28,7 @@ const ImageSlider = ({ images, children }: ImageSliderProps) => {
 
       <CarImageWrapper>
         <CarImage
-          source={images[0]}
+          source={{ uri: images[0] }}
           resizeMode='contain'
         />
       </CarImageWrapper>

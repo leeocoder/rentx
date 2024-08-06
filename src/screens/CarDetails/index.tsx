@@ -18,61 +18,46 @@ import ImageSlider from '@components/ImageSlider';
 import Accessory from '@components/Accessory';
 import Speed from '@assets/images/speed.svg';
 import Button from '@components/Button';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 import { CarDetailsNavigationProp } from '../../routes/routes-types';
+import { CarServerInterface } from '../../interfaces/car-server.interface';
+import { formatNumberAsCurrency } from '@utils/format-number-as-currency.util';
+
+interface Params {
+  data: CarServerInterface;
+}
 
 const CarDetails = () => {
   const navigation = useNavigation<CarDetailsNavigationProp>();
-
+  const route = useRoute();
+  const { data } = route.params as Params;
   return (
     <Container>
       <Header>
-        <ImageSlider images={[require('@assets/images/audi.png')]}>
+        <ImageSlider images={data.photos}>
           <BackButton onPress={() => navigation.goBack()} />
         </ImageSlider>
       </Header>
       <Content>
         <Details>
           <Description>
-            <Brand>Lamborghini</Brand>
-            <Name>Huracan</Name>
+            <Brand>{data.brand}</Brand>
+            <Name>{data.name}</Name>
           </Description>
           <Rent>
-            <Period>Ao dia</Period>
-            <Price>R$ 580</Price>
+            <Period>{data.rent.period}</Period>
+            <Price>{formatNumberAsCurrency(data.rent.price)}</Price>
           </Rent>
         </Details>
         <Accessories>
-          <Accessory
-            name='380km/h'
-            icon={Speed}
-          />
-
-          <Accessory
-            name='380km/h'
-            icon={Speed}
-          />
-
-          <Accessory
-            name='380km/h'
-            icon={Speed}
-          />
-
-          <Accessory
-            name='380km/h'
-            icon={Speed}
-          />
-
-          <Accessory
-            name='380km/h'
-            icon={Speed}
-          />
-
-          <Accessory
-            name='380km/h'
-            icon={Speed}
-          />
+          {data.accessories.map((accessory) => (
+            <Accessory
+              key={accessory.type}
+              name={accessory.name}
+              icon={Speed}
+            />
+          ))}
         </Accessories>
         <About>
           Este é automóvel desportivo. Surgiu do lendário touro de lide

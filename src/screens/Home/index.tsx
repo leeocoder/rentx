@@ -37,8 +37,8 @@ const Home = () => {
   });
   const navigation = useNavigation<HomeScreenNavigationProp>();
 
-  function handleCarDetails() {
-    navigation.navigate('CarDetails');
+  function handleCarDetails(data: CarServerInterface) {
+    navigation.navigate('CarDetails', { data });
   }
 
   return (
@@ -66,7 +66,7 @@ const Home = () => {
           }) => (
             <CarCard
               data={item}
-              onPress={handleCarDetails}
+              onPress={() => handleCarDetails(item)}
             />
           )}
         />

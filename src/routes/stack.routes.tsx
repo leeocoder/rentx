@@ -4,10 +4,13 @@ import Home from '@screens/Home';
 import Schedule from '@screens/Schedule';
 import ScheduleComplete from '@screens/ScheduleComplete';
 import ScheduleDetails from '@screens/ScheduleDetails';
+import { CarServerInterface } from '../interfaces/car-server.interface';
 
 export type RootStackParamList = {
   Home: undefined;
-  CarDetails: undefined;
+  CarDetails: {
+    data: CarServerInterface;
+  };
   Schedule: undefined;
   ScheduleComplete: undefined;
   ScheduleDetails: undefined;

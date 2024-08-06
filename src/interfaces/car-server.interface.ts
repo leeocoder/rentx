@@ -3,7 +3,7 @@ interface CarAccessory {
   name: string;
 }
 
-interface CarPhoto {
+export interface CarPhotoInterface {
   id: string;
   photo: string;
 }
@@ -22,7 +22,7 @@ export interface CarServerInterface {
   fuel_type: string;
   thumbnail: string;
   accessories: CarAccessory[];
-  photos: CarPhoto[];
+  photos: CarPhotoInterface[];
 }
 
 interface ScheduleByCar {
