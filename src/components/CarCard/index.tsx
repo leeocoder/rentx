@@ -13,21 +13,10 @@ import {
 } from './styles';
 import Gasoline from '@assets/images/gasoline.svg';
 import { RectButtonProps } from 'react-native-gesture-handler';
-
-export type CardCardProps = {
-  id: string;
-  brand: string;
-  name: string;
-  rent: {
-    period: string;
-    price: number;
-  };
-  type: string;
-  image: string;
-};
+import { CarServerInterface } from '../../interfaces/car-server.interface';
 
 interface CarCardDataProps extends RectButtonProps {
-  data: CardCardProps;
+  data: CarServerInterface;
 }
 
 const CarCard = ({ data, ...rest }: CarCardDataProps) => {
@@ -48,10 +37,9 @@ const CarCard = ({ data, ...rest }: CarCardDataProps) => {
           </Type>
         </About>
       </Details>
-
       <CarImage
-        source={data.image}
-        resizeModel='contain'
+        source={{ uri: data.thumbnail }}
+        resizeMode='contain'
       />
     </Container>
   );

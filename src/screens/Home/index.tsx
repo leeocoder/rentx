@@ -1,5 +1,5 @@
 import Logo from '@assets/images/logo.svg';
-import CarCard, { CardCardProps } from '@components/CarCard';
+import CarCard from '@components/CarCard';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { MOCK_CAR_DATA_LIST } from '@utils/car-data.mock';
@@ -8,6 +8,10 @@ import { RFValue } from 'react-native-responsive-fontsize';
 
 import { RootStackParamList } from '../../routes/stack.routes';
 import { CarList, Container, Header, HeaderContent, TotalCars } from './styles';
+import { api } from '@services/api';
+import { useEffect, useState } from 'react';
+import { CarServerInterface } from '../../interfaces/car-server.interface';
+import Loading from '@components/Loading';
 
 type HomeScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -15,6 +19,22 @@ type HomeScreenNavigationProp = NativeStackNavigationProp<
 >;
 
 const Home = () => {
+  const [cars, setCards] = useState<CarServerInterface[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  useEffect(() => {
+    async function loadCardsData() {
+      try {
+        const response = await api.get<CarServerInterface[]>('/cars');
+        setCards(response.data);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadCardsData();
+  });
   const navigation = useNavigation<HomeScreenNavigationProp>();
 
   function handleCarDetails() {
@@ -32,16 +52,25 @@ const Home = () => {
           <TotalCars>Total de 12 Carros</TotalCars>
         </HeaderContent>
       </Header>
-      <CarList
-        data={MOCK_CAR_DATA_LIST}
-        keyExtractor={({ id }: CardCardProps) => id}
-        renderItem={({ item }: { index: number; item: CardCardProps }) => (
-          <CarCard
-            data={item}
-            onPress={handleCarDetails}
-          />
-        )}
-      />
+      {loading ? (
+        <Loading />
+      ) : (
+        <CarList
+          data={cars}
+          keyExtractor={({ id }: CarServerInterface) => id}
+          renderItem={({
+            item,
+          }: {
+            index: number;
+            item: CarServerInterface;
+          }) => (
+            <CarCard
+              data={item}
+              onPress={handleCarDetails}
+            />
+          )}
+        />
+      )}
     </Container>
   );
 };
