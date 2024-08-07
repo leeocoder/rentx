@@ -14,12 +14,14 @@ import {
 import Gasoline from '@assets/images/gasoline.svg';
 import { RectButtonProps } from 'react-native-gesture-handler';
 import { CarServerInterface } from '../../interfaces/car-server.interface';
+import { getAccessoriesIcon } from '@utils/get-accessories-icon';
 
 interface CarCardDataProps extends RectButtonProps {
   data: CarServerInterface;
 }
 
 const CarCard = ({ data, ...rest }: CarCardDataProps) => {
+  const MotorIcon = getAccessoriesIcon(data.fuel_type);
   return (
     <Container {...rest}>
       <Details>
@@ -33,7 +35,7 @@ const CarCard = ({ data, ...rest }: CarCardDataProps) => {
           </Rent>
 
           <Type>
-            <Gasoline />
+            <MotorIcon />
           </Type>
         </About>
       </Details>

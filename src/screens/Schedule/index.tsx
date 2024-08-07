@@ -14,11 +14,34 @@ import { useTheme } from 'styled-components';
 
 import Arrow from '@assets/images/arrow-left.svg';
 import Button from '@components/Button';
-import Calendar from '@components/Calendar';
+import Calendar, { MarkedDateProps } from '@components/Calendar';
 import { ScheduleNavigationProp } from '../../routes/routes-types';
 import { useNavigation } from '@react-navigation/native';
+import { DayProps } from 'react-native-calendars/src/calendar/day';
+import { useState } from 'react';
+import { generateInterval } from '@utils/generate-interval';
+import { DateData } from 'react-native-calendars';
 
 const Schedule = () => {
+  const [lastSelectedDate, setLastSelectedDate] = useState<any>({});
+  const [markedDate, setMarkedDate] = useState<MarkedDateProps>({});
+  function handleChangeDate(date: DateData) {
+    console.log(date);
+
+    let start = !lastSelectedDate.timestamp ? date : lastSelectedDate;
+    let end = date;
+
+    if (start.timestamp > end.timestamp) {
+      const startDate = start;
+      start = end;
+      end = startDate;
+    }
+
+    setLastSelectedDate(end);
+    const interval = generateInterval(start, end);
+    setMarkedDate(interval);
+  }
+
   const navigation = useNavigation<ScheduleNavigationProp>();
   const { colors } = useTheme();
   return (
@@ -48,7 +71,10 @@ const Schedule = () => {
       </Header>
 
       <Content>
-        <Calendar />
+        <Calendar
+          markedDates={markedDate}
+          onDayPress={handleChangeDate}
+        />
       </Content>
       <Footer>
         <Button

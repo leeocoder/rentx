@@ -23,6 +23,7 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import { CarDetailsNavigationProp } from '../../routes/routes-types';
 import { CarServerInterface } from '../../interfaces/car-server.interface';
 import { formatNumberAsCurrency } from '@utils/format-number-as-currency.util';
+import { getAccessoriesIcon } from '@utils/get-accessories-icon';
 
 interface Params {
   data: CarServerInterface;
@@ -55,7 +56,7 @@ const CarDetails = () => {
             <Accessory
               key={accessory.type}
               name={accessory.name}
-              icon={Speed}
+              icon={getAccessoriesIcon(accessory.type)}
             />
           ))}
         </Accessories>
