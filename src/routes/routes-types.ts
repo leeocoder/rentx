@@ -25,3 +25,8 @@ export type ScheduleDetailsNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
   'ScheduleDetails'
 >;
+
+export type MyCarsNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  'MyCars'
+>;

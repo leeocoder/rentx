@@ -5,9 +5,11 @@ import Schedule, { RentalPeriod } from '@screens/Schedule';
 import ScheduleComplete from '@screens/ScheduleComplete';
 import ScheduleDetails from '@screens/ScheduleDetails';
 import { CarServerInterface } from '../interfaces/car-server.interface';
+import MyCars from '@screens/MyCars';
 
 export type RootStackParamList = {
   Home: undefined;
+  MyCars: undefined;
   CarDetails: {
     data: CarServerInterface;
   };
@@ -49,6 +51,10 @@ const StackRoutes = () => {
       <Screen
         name='ScheduleDetails'
         component={ScheduleDetails}
+      />
+      <Screen
+        name='MyCars'
+        component={MyCars}
       />
     </Navigator>
   );

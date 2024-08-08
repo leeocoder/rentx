@@ -2,16 +2,25 @@ import Logo from '@assets/images/logo.svg';
 import CarCard from '@components/CarCard';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { MOCK_CAR_DATA_LIST } from '@utils/car-data.mock';
+
+import { Ionicons } from '@expo/vector-icons';
 
 import { RFValue } from 'react-native-responsive-fontsize';
 
 import { RootStackParamList } from '../../routes/stack.routes';
-import { CarList, Container, Header, HeaderContent, TotalCars } from './styles';
+import {
+  CarList,
+  Container,
+  Header,
+  HeaderContent,
+  TotalCars,
+  MyCarsButton,
+} from './styles';
 import { api } from '@services/api';
 import { useEffect, useState } from 'react';
 import { CarServerInterface } from '../../interfaces/car-server.interface';
 import Loading from '@components/Loading';
+import { useTheme } from 'styled-components';
 
 type HomeScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -36,9 +45,13 @@ const Home = () => {
     loadCardsData();
   });
   const navigation = useNavigation<HomeScreenNavigationProp>();
-
+  const theme = useTheme();
   function handleCarDetails(data: CarServerInterface) {
     navigation.navigate('CarDetails', { data });
+  }
+
+  function handleMyCars() {
+    navigation.navigate('MyCars');
   }
 
   return (
@@ -71,6 +84,13 @@ const Home = () => {
           )}
         />
       )}
+      <MyCarsButton onPress={handleMyCars}>
+        <Ionicons
+          name='car-sport'
+          size={32}
+          color={theme.colors.shape}
+        />
+      </MyCarsButton>
     </Container>
   );
 };
