@@ -1,4 +1,4 @@
-import { eachDayOfInterval, format } from 'date-fns';
+import { addDays, eachDayOfInterval, format } from 'date-fns';
 import theme from '../styles/theme';
 import { DateData } from 'react-native-calendars';
 import { geTPlatFormDate } from './gate-plateform-date';
@@ -9,11 +9,12 @@ export function generateInterval(
   end: DateData
 ): MarkedDateProps {
   let interval: any = {};
-
-  eachDayOfInterval({
+  const dates = eachDayOfInterval({
     start: new Date(start.timestamp),
     end: new Date(end.timestamp),
-  }).forEach((item) => {
+  }).map((day) => addDays(day, 1));
+
+  dates.forEach((item) => {
     const data = format(geTPlatFormDate(item), 'yyyy-MM-dd');
     interval = {
       ...interval,

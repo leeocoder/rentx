@@ -21,25 +21,44 @@ import { DayProps } from 'react-native-calendars/src/calendar/day';
 import { useState } from 'react';
 import { generateInterval } from '@utils/generate-interval';
 import { DateData } from 'react-native-calendars';
+import { addDays, format } from 'date-fns';
+import { geTPlatFormDate } from '@utils/gate-plateform-date';
+import { formatDate } from '@utils/format-date.util';
+
+interface RentalPeriod {
+  start: number;
+  startFormatted: string;
+  end: number;
+  endFormatted: string;
+}
 
 const Schedule = () => {
   const [lastSelectedDate, setLastSelectedDate] = useState<any>({});
   const [markedDate, setMarkedDate] = useState<MarkedDateProps>({});
-  function handleChangeDate(date: DateData) {
-    console.log(date);
+  const [rentalPeriod, setRentalPeriod] = useState<RentalPeriod>();
 
+  function handleChangeDate(date: DateData) {
     let start = !lastSelectedDate.timestamp ? date : lastSelectedDate;
     let end = date;
 
     if (start.timestamp > end.timestamp) {
-      const startDate = start;
       start = end;
-      end = startDate;
+      end = start;
     }
 
     setLastSelectedDate(end);
     const interval = generateInterval(start, end);
     setMarkedDate(interval);
+    const lastOne = Object.keys(interval).length - 1;
+    const firstDate = new Date(Object.keys(interval)[0]);
+    const lastDate = new Date(Object.keys(interval)[lastOne]);
+
+    setRentalPeriod({
+      start: addDays(new Date(firstDate), 1).getTime(),
+      end: addDays(new Date(lastDate), 1).getTime(),
+      startFormatted: formatDate(addDays(firstDate, 1)),
+      endFormatted: formatDate(addDays(lastDate, 1)),
+    });
   }
 
   const navigation = useNavigation<ScheduleNavigationProp>();
@@ -60,12 +79,16 @@ const Schedule = () => {
         <RentalPeriod>
           <DateInfo>
             <DateTitle>DE</DateTitle>
-            <DateValue selected={false}></DateValue>
+            <DateValue selected={!!rentalPeriod?.startFormatted}>
+              {rentalPeriod?.startFormatted}
+            </DateValue>
           </DateInfo>
           <Arrow />
           <DateInfo>
             <DateTitle>ATÉ</DateTitle>
-            <DateValue selected={false}></DateValue>
+            <DateValue selected={!!rentalPeriod?.endFormatted}>
+              {rentalPeriod?.endFormatted}
+            </DateValue>
           </DateInfo>
         </RentalPeriod>
       </Header>

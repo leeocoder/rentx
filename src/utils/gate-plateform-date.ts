@@ -5,6 +5,5 @@ export function geTPlatFormDate(date: Date) {
   if (Platform.OS === 'ios') {
     return addDays(date, 1);
   }
-
   return date;
 }
