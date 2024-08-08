@@ -30,7 +30,7 @@ interface ScheduleByCar {
   unavailable_dates: string[];
 }
 
-interface CarRentalData {
+export interface CarRentalData {
   cars: CarServerInterface[];
   schedules_bycars: ScheduleByCar[];
   schedules_byuser: any[];

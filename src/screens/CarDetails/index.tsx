@@ -33,6 +33,9 @@ const CarDetails = () => {
   const navigation = useNavigation<CarDetailsNavigationProp>();
   const route = useRoute();
   const { data } = route.params as Params;
+  function handleRental() {
+    navigation.navigate('Schedule', { car: data });
+  }
   return (
     <Container>
       <Header>
@@ -69,7 +72,7 @@ const CarDetails = () => {
       <Footer>
         <Button
           title='Escolher período do aluguel'
-          onPress={() => navigation.navigate('Schedule')}
+          onPress={handleRental}
         />
       </Footer>
     </Container>

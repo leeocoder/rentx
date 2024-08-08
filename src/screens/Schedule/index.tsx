@@ -1,41 +1,62 @@
-import BackButton from '@components/BackButton';
-import {
-  Container,
-  Header,
-  Title,
-  RentalPeriod,
-  DateInfo,
-  Content,
-  Footer,
-  DateTitle,
-  DateValue,
-} from './styles';
-import { useTheme } from 'styled-components';
-
 import Arrow from '@assets/images/arrow-left.svg';
+import BackButton from '@components/BackButton';
 import Button from '@components/Button';
 import Calendar, { MarkedDateProps } from '@components/Calendar';
-import { ScheduleNavigationProp } from '../../routes/routes-types';
-import { useNavigation } from '@react-navigation/native';
-import { DayProps } from 'react-native-calendars/src/calendar/day';
-import { useState } from 'react';
-import { generateInterval } from '@utils/generate-interval';
-import { DateData } from 'react-native-calendars';
-import { addDays, format } from 'date-fns';
-import { geTPlatFormDate } from '@utils/gate-plateform-date';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { formatDate } from '@utils/format-date.util';
+import { generateInterval } from '@utils/generate-interval';
 
-interface RentalPeriod {
-  start: number;
+import { addDays } from 'date-fns';
+import { useState } from 'react';
+import { DateData } from 'react-native-calendars';
+import { useTheme } from 'styled-components';
+
+import { ScheduleNavigationProp } from '../../routes/routes-types';
+import {
+  Container,
+  Content,
+  DateInfo,
+  DateTitle,
+  DateValue,
+  Footer,
+  Header,
+  RentalPeriod,
+  Title,
+} from './styles';
+import { Alert } from 'react-native';
+import { CarServerInterface } from '../../interfaces/car-server.interface';
+
+export interface RentalPeriod {
   startFormatted: string;
-  end: number;
   endFormatted: string;
 }
 
+interface Params {
+  car: CarServerInterface;
+}
+
 const Schedule = () => {
+  const navigation = useNavigation<ScheduleNavigationProp>();
+
+  const route = useRoute();
+  const { car } = route.params as Params;
+
   const [lastSelectedDate, setLastSelectedDate] = useState<any>({});
   const [markedDate, setMarkedDate] = useState<MarkedDateProps>({});
   const [rentalPeriod, setRentalPeriod] = useState<RentalPeriod>();
+
+  function handleConfirmRental() {
+    if (!rentalPeriod?.startFormatted || !rentalPeriod?.startFormatted) {
+      return Alert.alert('Selecione o intervalo para alugar.');
+    }
+
+    const data = {
+      car,
+      dates: Object.keys(markedDate),
+    };
+
+    navigation.navigate('ScheduleDetails', data);
+  }
 
   function handleChangeDate(date: DateData) {
     let start = !lastSelectedDate.timestamp ? date : lastSelectedDate;
@@ -54,14 +75,11 @@ const Schedule = () => {
     const lastDate = new Date(Object.keys(interval)[lastOne]);
 
     setRentalPeriod({
-      start: addDays(new Date(firstDate), 1).getTime(),
-      end: addDays(new Date(lastDate), 1).getTime(),
       startFormatted: formatDate(addDays(firstDate, 1)),
       endFormatted: formatDate(addDays(lastDate, 1)),
     });
   }
 
-  const navigation = useNavigation<ScheduleNavigationProp>();
   const { colors } = useTheme();
   return (
     <Container>
@@ -102,7 +120,7 @@ const Schedule = () => {
       <Footer>
         <Button
           title='Confirmar'
-          onPress={() => navigation.navigate('ScheduleDetails')}
+          onPress={handleConfirmRental}
         />
       </Footer>
     </Container>

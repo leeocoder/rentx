@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import CarDetails from '@screens/CarDetails';
 import Home from '@screens/Home';
-import Schedule from '@screens/Schedule';
+import Schedule, { RentalPeriod } from '@screens/Schedule';
 import ScheduleComplete from '@screens/ScheduleComplete';
 import ScheduleDetails from '@screens/ScheduleDetails';
 import { CarServerInterface } from '../interfaces/car-server.interface';
@@ -11,9 +11,14 @@ export type RootStackParamList = {
   CarDetails: {
     data: CarServerInterface;
   };
-  Schedule: undefined;
+  Schedule: {
+    car: CarServerInterface;
+  };
   ScheduleComplete: undefined;
-  ScheduleDetails: undefined;
+  ScheduleDetails: {
+    car: CarServerInterface;
+    dates: string[];
+  };
 };
 
 const { Screen, Navigator } = createNativeStackNavigator<RootStackParamList>();
