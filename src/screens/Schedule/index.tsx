@@ -41,6 +41,10 @@ const Schedule = () => {
   const route = useRoute();
   const { car } = route.params as Params;
 
+  function handleGoBack() {
+    navigation.goBack();
+  }
+
   const [lastSelectedDate, setLastSelectedDate] = useState<any>({});
   const [markedDate, setMarkedDate] = useState<MarkedDateProps>({});
   const [rentalPeriod, setRentalPeriod] = useState<RentalPeriod>();
@@ -85,7 +89,7 @@ const Schedule = () => {
     <Container>
       <Header>
         <BackButton
-          onPress={() => {}}
+          onPress={handleGoBack}
           color={colors.shape}
         />
         <Title>

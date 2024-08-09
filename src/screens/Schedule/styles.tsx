@@ -23,7 +23,7 @@ export const Title = styled.Text`
   color: ${({ theme }: { theme: ThemeType }) => theme.colors.shape};
   font-family: ${({ theme }: { theme: ThemeType }) =>
     theme.fonts.secondary_600};
-  font-size: ${RFValue(34)}px;
+  font-size: ${RFValue(30)}px;
   margin-top: 32px;
 `;
 

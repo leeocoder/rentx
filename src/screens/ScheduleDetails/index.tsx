@@ -68,7 +68,19 @@ const ScheduleDetails = () => {
   const { car, dates } = route.params as Params;
 
   async function handleConfirmCarRental() {
-    navigation.navigate('ScheduleComplete');
+    await api
+      .post('schedules_byuser', {
+        user_id: 1,
+        car,
+        startDate: rentalPeriod?.startFormatted,
+        endDate: rentalPeriod?.endFormatted,
+      })
+      .then(() => {
+        navigation.navigate('ScheduleComplete');
+      })
+      .catch((err) => {
+        console.error('Failed to create schedule', err);
+      });
   }
 
   const theme = useTheme();
