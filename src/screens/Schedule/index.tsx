@@ -125,6 +125,7 @@ const Schedule = () => {
         <Button
           title='Confirmar'
           onPress={handleConfirmRental}
+          enable={!!rentalPeriod?.endFormatted}
         />
       </Footer>
     </Container>

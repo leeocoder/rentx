@@ -53,6 +53,7 @@ interface RentalPeriod {
 }
 
 const ScheduleDetails = () => {
+  const [loading, setLoading] = useState<boolean>(false);
   const [rentalPeriod, setRentalPeriod] = useState<RentalPeriod>();
   const navigation = useNavigation<ScheduleDetailsNavigationProp>();
 
@@ -68,6 +69,7 @@ const ScheduleDetails = () => {
   const { car, dates } = route.params as Params;
 
   async function handleConfirmCarRental() {
+    setLoading(true);
     await api
       .post('schedules_byuser', {
         user_id: 1,
@@ -76,9 +78,11 @@ const ScheduleDetails = () => {
         endDate: rentalPeriod?.endFormatted,
       })
       .then(() => {
+        setLoading(false);
         navigation.navigate('ScheduleComplete');
       })
       .catch((err) => {
+        setLoading(false);
         console.error('Failed to create schedule', err);
       });
   }
@@ -152,6 +156,8 @@ const ScheduleDetails = () => {
           title='Alugar agora'
           color={theme.colors.success}
           onPress={handleConfirmCarRental}
+          enable={!loading}
+          isLoading={loading}
         />
       </Footer>
     </Container>
