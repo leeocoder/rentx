@@ -30,6 +30,11 @@ export const Subtitle = styled.Text`
   margin-top: 16px;
 `;
 
+export const Content = styled.View`
+  margin: 64px 0;
+  row-gap: 8px;
+`;
+
 export const Footer = styled.View`
   row-gap: 8px;
 `;

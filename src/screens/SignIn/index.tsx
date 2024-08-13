@@ -1,7 +1,8 @@
 import React from 'react';
-import { Footer, Container, Header, Subtitle, Title } from './style';
+import { Footer, Container, Header, Subtitle, Title, Content } from './style';
 import Button from '@components/Button';
 import { useTheme } from 'styled-components';
+import Input from '@components/Input';
 
 const SignIn = () => {
   const theme = useTheme();
@@ -17,6 +18,10 @@ const SignIn = () => {
           uma experiência incrível.
         </Subtitle>
       </Header>
+      <Content>
+        <Input iconName='mail' />
+        <Input iconName='lock' />
+      </Content>
       <Footer>
         <Button
           title='Login'
