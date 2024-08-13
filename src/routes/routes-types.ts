@@ -30,3 +30,8 @@ export type MyCarsNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
   'MyCars'
 >;
+
+export type SignInNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  'MyCars'
+>;

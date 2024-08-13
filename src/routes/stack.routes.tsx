@@ -6,6 +6,7 @@ import ScheduleComplete from '@screens/ScheduleComplete';
 import ScheduleDetails from '@screens/ScheduleDetails';
 import { CarServerInterface } from '../interfaces/car-server.interface';
 import MyCars from '@screens/MyCars';
+import SignIn from '@screens/SignIn';
 
 export type RootStackParamList = {
   Home: undefined;
@@ -17,6 +18,7 @@ export type RootStackParamList = {
     car: CarServerInterface;
   };
   ScheduleComplete: undefined;
+  SignIn: undefined;
   ScheduleDetails: {
     car: CarServerInterface;
     dates: string[];
@@ -31,6 +33,7 @@ const StackRoutes = () => {
       screenOptions={{
         headerShown: false,
       }}
+      initialRouteName='SignIn'
     >
       <Screen
         name='Home'
@@ -55,6 +58,10 @@ const StackRoutes = () => {
       <Screen
         name='MyCars'
         component={MyCars}
+      />
+      <Screen
+        name='SignIn'
+        component={SignIn}
       />
     </Navigator>
   );

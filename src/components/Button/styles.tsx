@@ -7,6 +7,10 @@ interface ButtonProps extends RectButtonProps {
   color: string;
 }
 
+interface ButtonTextProps {
+  light: boolean;
+}
+
 // width: ${Dimensions.get('window').width}px;
 
 export const Container = styled(RectButton)<ButtonProps>`
@@ -18,9 +22,10 @@ export const Container = styled(RectButton)<ButtonProps>`
     color ? color : theme.colors.main};
 `;
 
-export const Title = styled.Text`
+export const Title = styled.Text<ButtonTextProps>`
   font-family: ${({ theme }: { theme: ThemeType }) => theme.fonts.primary_500};
   font-size: ${RFValue(15)}px;
-  color: ${({ theme }: { theme: ThemeType }) =>
-    theme.colors.background_secondary};
+
+  color: ${({ theme, light }: { theme: ThemeType } & ButtonTextProps) =>
+    light ? theme.colors.title : theme.colors.background_secondary};
 `;
