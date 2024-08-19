@@ -33,5 +33,10 @@ export type MyCarsNavigationProp = NativeStackNavigationProp<
 
 export type SignInNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
-  'MyCars'
+  'SignIn'
+>;
+
+export type SignUpFirstStepDataNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  'SignUpFirstStepData'
 >;

@@ -1,12 +1,14 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import CarDetails from '@screens/CarDetails';
 import Home from '@screens/Home';
-import Schedule, { RentalPeriod } from '@screens/Schedule';
+import MyCars from '@screens/MyCars';
+import Schedule from '@screens/Schedule';
 import ScheduleComplete from '@screens/ScheduleComplete';
 import ScheduleDetails from '@screens/ScheduleDetails';
-import { CarServerInterface } from '../interfaces/car-server.interface';
-import MyCars from '@screens/MyCars';
 import SignIn from '@screens/SignIn';
+import SignUpFirstStepData from '@screens/SignUp/SignUpFirstDataData';
+
+import { CarServerInterface } from '../interfaces/car-server.interface';
 
 export type RootStackParamList = {
   Home: undefined;
@@ -23,6 +25,7 @@ export type RootStackParamList = {
     car: CarServerInterface;
     dates: string[];
   };
+  SignUpFirstStepData: undefined;
 };
 
 const { Screen, Navigator } = createNativeStackNavigator<RootStackParamList>();
@@ -35,6 +38,14 @@ const StackRoutes = () => {
       }}
       initialRouteName='SignIn'
     >
+      <Screen
+        name='SignIn'
+        component={SignIn}
+      />
+      <Screen
+        name='SignUpFirstStepData'
+        component={SignUpFirstStepData}
+      />
       <Screen
         name='Home'
         component={Home}
@@ -58,10 +69,6 @@ const StackRoutes = () => {
       <Screen
         name='MyCars'
         component={MyCars}
-      />
-      <Screen
-        name='SignIn'
-        component={SignIn}
       />
     </Navigator>
   );
