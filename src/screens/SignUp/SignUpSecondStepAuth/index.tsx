@@ -1,27 +1,71 @@
 import BackButton from '@components/BackButton';
-import {
-  Container,
-  Header,
-  Steps,
-  Title,
-  Subtitle,
-  Form,
-  FormTitle,
-  InputWrapper,
-} from './style';
-import { useNavigation } from '@react-navigation/native';
-import { SignUpFirstStepDataNavigationProp } from '../../../routes/routes-types';
 import Bullet from '@components/Bullet';
-import Input from '@components/Input';
 import Button from '@components/Button';
+import InputPassword from '@components/InputPassword';
+import { useNavigation, useRoute } from '@react-navigation/native';
+
+import { useState } from 'react';
 import {
+  Alert,
+  Keyboard,
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
-  Keyboard,
 } from 'react-native';
+import { useTheme } from 'styled-components';
 
-const SignUpFirstStepData = () => {
-  const navigation = useNavigation<SignUpFirstStepDataNavigationProp>();
+import { SignUpSecondStepAuthNavigationProp } from '../../../routes/routes-types';
+import {
+  Container,
+  Form,
+  FormTitle,
+  Header,
+  InputWrapper,
+  Steps,
+  Subtitle,
+  Title,
+} from './style';
+
+import * as yup from 'yup';
+import { UserSignUpFirstStep } from '../SignUpFirstStepData';
+
+type Params = {
+  user: UserSignUpFirstStep;
+};
+
+const SignUpSecondStepAuth = () => {
+  const [password, setPassword] = useState<string>('');
+  const [confirmPassword, setConfirmPassword] = useState<string>('');
+
+  const route = useRoute();
+  const { user } = route.params as Params;
+
+  async function handleCreateAccount(): Promise<void> {
+    try {
+      const schema = yup.object().shape({
+        password: yup.string().required('Senha é obrigatório'),
+        confirmPassword: yup.string().required('Confirmar Senha é obrigatório'),
+      });
+
+      if (password !== confirmPassword) {
+        return Alert.alert('As senha devem ser iguais');
+      }
+
+      await schema.validate({ password, confirmPassword });
+    } catch (error) {
+      if (error instanceof yup.ValidationError) {
+        return Alert.alert(error.message);
+      } else {
+        return Alert.alert('error na autenticação');
+      }
+    }
+
+    // navigation.navigate('SignUpSecondStepAuth', {
+    //   user: { pas },
+    // });
+  }
+
+  const navigation = useNavigation<SignUpSecondStepAuthNavigationProp>();
+  const theme = useTheme();
 
   return (
     <KeyboardAvoidingView
@@ -46,29 +90,37 @@ const SignUpFirstStepData = () => {
             forma rápida e fácil.
           </Subtitle>
           <Form>
-            <FormTitle>1. Dados</FormTitle>
+            <FormTitle>02. Senha</FormTitle>
             <InputWrapper>
-              <Input
-                iconName='user'
-                placeholder='Nome'
+              <InputPassword
+                iconName='lock'
+                placeholder='Senha'
+                placeholderTextColor={theme.colors.text_details}
+                onChangeText={(value) => setPassword(value)}
+                value={password}
               />
-              <Input
-                iconName='mail'
-                placeholder='E-mail'
-                keyboardType='email-address'
-              />
-              <Input
-                iconName='credit-card'
-                placeholder='CNH'
-                keyboardType='numeric'
+
+              <InputPassword
+                iconName='lock'
+                placeholder='Repetir senha'
+                placeholderTextColor={theme.colors.text_details}
+                onChangeText={(value) => setConfirmPassword(value)}
+                value={confirmPassword}
               />
             </InputWrapper>
           </Form>
-          <Button title='Próximo' />
+          <Button
+            title='Cadastrar'
+            color={theme.colors.success}
+            onPress={handleCreateAccount}
+            enable={Boolean(
+              password && confirmPassword && password === confirmPassword
+            )}
+          />
         </Container>
       </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
   );
 };
 
-export default SignUpFirstStepData;
+export default SignUpSecondStepAuth;

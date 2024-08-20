@@ -6,9 +6,12 @@ import Schedule from '@screens/Schedule';
 import ScheduleComplete from '@screens/ScheduleComplete';
 import ScheduleDetails from '@screens/ScheduleDetails';
 import SignIn from '@screens/SignIn';
-import SignUpFirstStepData from '@screens/SignUp/SignUpFirstStepData';
+import SignUpFirstStepData, {
+  UserSignUpFirstStep,
+} from '@screens/SignUp/SignUpFirstStepData';
 
 import { CarServerInterface } from '../interfaces/car-server.interface';
+import SignUpSecondStepAuth from '@screens/SignUp/SignUpSecondStepAuth';
 
 export type RootStackParamList = {
   Home: undefined;
@@ -26,6 +29,9 @@ export type RootStackParamList = {
     dates: string[];
   };
   SignUpFirstStepData: undefined;
+  SignUpSecondStepAuth: {
+    user: UserSignUpFirstStep;
+  };
 };
 
 const { Screen, Navigator } = createNativeStackNavigator<RootStackParamList>();
@@ -45,6 +51,10 @@ const StackRoutes = () => {
       <Screen
         name='SignUpFirstStepData'
         component={SignUpFirstStepData}
+      />
+      <Screen
+        name='SignUpSecondStepAuth'
+        component={SignUpSecondStepAuth}
       />
       <Screen
         name='Home'

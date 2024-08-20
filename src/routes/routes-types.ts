@@ -40,3 +40,8 @@ export type SignUpFirstStepDataNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
   'SignUpFirstStepData'
 >;
+
+export type SignUpSecondStepAuthNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  'SignUpSecondStepAuth'
+>;
