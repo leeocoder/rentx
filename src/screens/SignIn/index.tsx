@@ -12,14 +12,16 @@ import {
 } from 'react-native';
 
 import * as yup from 'yup';
+import { SignInNavigationProp } from '../../routes/routes-types';
+import { useNavigation } from '@react-navigation/native';
 
 const SignIn = () => {
   const theme = useTheme();
   const [email, setEmail] = useState<string>();
   const [password, setPassword] = useState<string>();
+  const navigation = useNavigation<SignInNavigationProp>();
 
   async function handleSignIn(): Promise<void> {
-    console.log('deu bom');
     try {
       const schema = yup.object().shape({
         email: yup
@@ -39,6 +41,10 @@ const SignIn = () => {
         return Alert.alert('error na autenticação');
       }
     }
+  }
+
+  function handleCreateAccount(): void {
+    navigation.navigate('SignUpFirstStepData');
   }
 
   return (
@@ -87,8 +93,8 @@ const SignIn = () => {
 
             <Button
               title='Criar conta gratuita'
-              onPress={() => {}}
-              enable={false}
+              onPress={handleCreateAccount}
+              enable
               isLoading={false}
               color={theme.colors.shape}
               light

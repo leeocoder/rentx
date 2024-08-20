@@ -6,7 +6,7 @@ import Schedule from '@screens/Schedule';
 import ScheduleComplete from '@screens/ScheduleComplete';
 import ScheduleDetails from '@screens/ScheduleDetails';
 import SignIn from '@screens/SignIn';
-import SignUpFirstStepData from '@screens/SignUp/SignUpFirstDataData';
+import SignUpFirstStepData from '@screens/SignUp/SignUpFirstStepData';
 
 import { CarServerInterface } from '../interfaces/car-server.interface';
 
