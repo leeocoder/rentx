@@ -51,6 +51,11 @@ const SignUpSecondStepAuth = () => {
       }
 
       await schema.validate({ password, confirmPassword });
+      navigation.navigate('Confirmation', {
+        title: 'Conta criada!',
+        message: `Agora é só fazer login \ne aproveitar!`,
+        confirmationRoute: 'SignIn',
+      });
     } catch (error) {
       if (error instanceof yup.ValidationError) {
         return Alert.alert(error.message);

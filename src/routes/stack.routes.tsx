@@ -3,7 +3,7 @@ import CarDetails from '@screens/CarDetails';
 import Home from '@screens/Home';
 import MyCars from '@screens/MyCars';
 import Schedule from '@screens/Schedule';
-import ScheduleComplete from '@screens/ScheduleComplete';
+import Confirmation from '@screens/Confirmation';
 import ScheduleDetails from '@screens/ScheduleDetails';
 import SignIn from '@screens/SignIn';
 import SignUpFirstStepData, {
@@ -22,7 +22,11 @@ export type RootStackParamList = {
   Schedule: {
     car: CarServerInterface;
   };
-  ScheduleComplete: undefined;
+  Confirmation: {
+    title: string;
+    message: string;
+    confirmationRoute: string;
+  };
   SignIn: undefined;
   ScheduleDetails: {
     car: CarServerInterface;
@@ -69,8 +73,8 @@ const StackRoutes = () => {
         component={Schedule}
       />
       <Screen
-        name='ScheduleComplete'
-        component={ScheduleComplete}
+        name='Confirmation'
+        component={Confirmation}
       />
       <Screen
         name='ScheduleDetails'

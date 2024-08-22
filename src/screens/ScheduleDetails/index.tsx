@@ -79,7 +79,11 @@ const ScheduleDetails = () => {
       })
       .then(() => {
         setLoading(false);
-        navigation.navigate('ScheduleComplete');
+        navigation.navigate('Confirmation', {
+          title: 'Carro alugado!',
+          message: `Agora você só precisa ir \naté a concessionária da RENTX \ne pegar o seu automóvel.`,
+          confirmationRoute: 'Home',
+        });
       })
       .catch((err) => {
         setLoading(false);

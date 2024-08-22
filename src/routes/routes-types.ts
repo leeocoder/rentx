@@ -16,9 +16,9 @@ export type CarDetailsNavigationProp = NativeStackNavigationProp<
   'CarDetails'
 >;
 
-export type ScheduleCompleteNavigationProp = NativeStackNavigationProp<
+export type ConfirmationNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
-  'ScheduleComplete'
+  'Confirmation'
 >;
 
 export type ScheduleDetailsNavigationProp = NativeStackNavigationProp<
