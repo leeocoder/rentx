@@ -15,6 +15,7 @@ import { ThemeProvider } from 'styled-components';
 
 import Routes from './src/routes';
 import theme from './src/styles/theme';
+import AppProvider from '@hooks/index';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -60,7 +61,9 @@ export default function App() {
           style={{ flex: 1 }}
           onLayout={onLayoutRootView}
         >
-          <Routes />
+          <AppProvider>
+            <Routes />
+          </AppProvider>
           <StatusBar
             style='auto'
             translucent

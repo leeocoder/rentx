@@ -27,6 +27,7 @@ import {
 
 import * as yup from 'yup';
 import { UserSignUpFirstStep } from '../SignUpFirstStepData';
+import { api } from '@services/api';
 
 type Params = {
   user: UserSignUpFirstStep;
@@ -51,11 +52,25 @@ const SignUpSecondStepAuth = () => {
       }
 
       await schema.validate({ password, confirmPassword });
-      navigation.navigate('Confirmation', {
-        title: 'Conta criada!',
-        message: `Agora é só fazer login \ne aproveitar!`,
-        confirmationRoute: 'SignIn',
-      });
+
+      await api
+        .post('/users', {
+          name: user.name,
+          email: user.email,
+          password,
+          driverLicense: user.driverLicense,
+        })
+        .then(() => {
+          navigation.navigate('Confirmation', {
+            title: 'Conta criada!',
+            message: `Agora é só fazer login \ne aproveitar!`,
+            confirmationRoute: 'SignIn',
+          });
+        })
+        .catch((err) => {
+          Alert.alert(`Não foi possível cadastrar a conta`);
+          console.error('Failed to create account', err);
+        });
     } catch (error) {
       if (error instanceof yup.ValidationError) {
         return Alert.alert(error.message);

@@ -14,9 +14,11 @@ import {
 import * as yup from 'yup';
 import { SignInNavigationProp } from '../../routes/routes-types';
 import { useNavigation } from '@react-navigation/native';
+import { useAuth } from '@hooks/auth';
 
 const SignIn = () => {
   const theme = useTheme();
+  const { signIn } = useAuth();
   const [email, setEmail] = useState<string>();
   const [password, setPassword] = useState<string>();
   const navigation = useNavigation<SignInNavigationProp>();
@@ -32,8 +34,9 @@ const SignIn = () => {
       });
 
       await schema.validate({ email, password });
-      Alert.alert('Tudo certo');
-      // @TODO make login connection
+      if (email && password) {
+        signIn({ email, password });
+      }
     } catch (error) {
       if (error instanceof yup.ValidationError) {
         return Alert.alert(error.message);

@@ -25,6 +25,7 @@ import {
 import { useState } from 'react';
 
 import * as yup from 'yup';
+import { useAuth } from '@hooks/auth';
 
 export type UserSignUpFirstStep = {
   name: string;
@@ -36,6 +37,9 @@ const SignUpFirstStepData = () => {
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [driverLicense, setDriverLicense] = useState<string>('');
+
+  const { user } = useAuth();
+  console.log(user);
 
   const navigation = useNavigation<SignUpFirstStepDataNavigationProp>();
 
