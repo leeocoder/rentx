@@ -7,7 +7,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 import { RFValue } from 'react-native-responsive-fontsize';
 
-import { RootStackParamList } from '../../routes/stack.routes';
+import { RootStackParamList } from '../../routes/app.stack.routes';
 import {
   CarList,
   Container,

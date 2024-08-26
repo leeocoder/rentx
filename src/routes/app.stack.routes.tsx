@@ -1,20 +1,16 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import CarDetails from '@screens/CarDetails';
 import Home from '@screens/Home';
-import MyCars from '@screens/MyCars';
 import Schedule from '@screens/Schedule';
 import Confirmation from '@screens/Confirmation';
 import ScheduleDetails from '@screens/ScheduleDetails';
-import SignIn from '@screens/SignIn';
-import SignUpFirstStepData, {
-  UserSignUpFirstStep,
-} from '@screens/SignUp/SignUpFirstStepData';
+import { UserSignUpFirstStep } from '@screens/SignUp/SignUpFirstStepData';
 
 import { CarServerInterface } from '../interfaces/car-server.interface';
-import SignUpSecondStepAuth from '@screens/SignUp/SignUpSecondStepAuth';
 
 export type RootStackParamList = {
   Home: undefined;
+  Profile: undefined;
   MyCars: undefined;
   CarDetails: {
     data: CarServerInterface;
@@ -40,26 +36,13 @@ export type RootStackParamList = {
 
 const { Screen, Navigator } = createNativeStackNavigator<RootStackParamList>();
 
-const StackRoutes = () => {
+const AppStackRoutes = () => {
   return (
     <Navigator
       screenOptions={{
         headerShown: false,
       }}
-      initialRouteName='SignIn'
     >
-      <Screen
-        name='SignIn'
-        component={SignIn}
-      />
-      <Screen
-        name='SignUpFirstStepData'
-        component={SignUpFirstStepData}
-      />
-      <Screen
-        name='SignUpSecondStepAuth'
-        component={SignUpSecondStepAuth}
-      />
       <Screen
         name='Home'
         component={Home}
@@ -80,12 +63,8 @@ const StackRoutes = () => {
         name='ScheduleDetails'
         component={ScheduleDetails}
       />
-      <Screen
-        name='MyCars'
-        component={MyCars}
-      />
     </Navigator>
   );
 };
 
-export default StackRoutes;
+export default AppStackRoutes;

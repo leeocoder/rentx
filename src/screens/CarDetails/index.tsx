@@ -38,11 +38,11 @@ const CarDetails = () => {
   }
   return (
     <Container>
-      <Header>
+      {/* <Header>
         <ImageSlider images={data.photos}>
           <BackButton onPress={() => navigation.goBack()} />
         </ImageSlider>
-      </Header>
+      </Header> */}
       <Content>
         <Details>
           <Description>

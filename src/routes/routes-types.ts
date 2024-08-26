@@ -1,5 +1,5 @@
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from './stack.routes';
+import { RootStackParamList } from './app.stack.routes';
 
 export type HomeScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
