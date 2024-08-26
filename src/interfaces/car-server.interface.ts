@@ -1,4 +1,5 @@
 interface CarAccessory {
+  id: string;
   type: string;
   name: string;
 }
@@ -8,17 +9,13 @@ export interface CarPhotoInterface {
   photo: string;
 }
 
-interface CarRent {
-  period: string;
-  price: number;
-}
-
 export interface CarServerInterface {
   id: string;
   brand: string;
   name: string;
   about: string;
-  rent: CarRent;
+  period: string;
+  price: number;
   fuel_type: string;
   thumbnail: string;
   accessories: CarAccessory[];

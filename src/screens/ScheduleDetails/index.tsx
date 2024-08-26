@@ -106,8 +106,8 @@ const ScheduleDetails = () => {
             <Name>{car.name}</Name>
           </Description>
           <Rent>
-            <Period>{car.rent.period}</Period>
-            <Price>{formatNumberAsCurrency(car.rent.price)}</Price>
+            <Period>{car.period}</Period>
+            <Price>{formatNumberAsCurrency(car.price)}</Price>
           </Rent>
         </Details>
         <Accessories>
@@ -147,10 +147,10 @@ const ScheduleDetails = () => {
           <RentalPriceLabel>TOTAL</RentalPriceLabel>
           <RentalPriceDetails>
             <RentalPriceQuota>
-              {formatNumberAsCurrency(car.rent.price)} x{dates.length} diárias
+              {formatNumberAsCurrency(car.price)} x{dates.length} diárias
             </RentalPriceQuota>
             <RentalPriceTotal>
-              {formatNumberAsCurrency(car.rent.price * dates.length)}
+              {formatNumberAsCurrency(car.price * dates.length)}
             </RentalPriceTotal>
           </RentalPriceDetails>
         </RentalPrice>

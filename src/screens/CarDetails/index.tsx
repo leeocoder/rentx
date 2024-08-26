@@ -50,8 +50,8 @@ const CarDetails = () => {
             <Name>{data.name}</Name>
           </Description>
           <Rent>
-            <Period>{data.rent.period}</Period>
-            <Price>{formatNumberAsCurrency(data.rent.price)}</Price>
+            <Period>{data.period}</Period>
+            <Price>{formatNumberAsCurrency(data.price)}</Price>
           </Rent>
         </Details>
         <Accessories>

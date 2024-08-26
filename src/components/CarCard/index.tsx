@@ -31,7 +31,7 @@ const CarCard = ({ data, ...rest }: CarCardDataProps) => {
         <About>
           <Rent>
             <Period>Ao dia</Period>
-            <Price>{`R$ ${data.rent?.price}`}</Price>
+            <Price>{`R$ ${data?.price}`}</Price>
           </Rent>
 
           <Type>
